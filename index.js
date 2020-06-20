@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require("body-parser");
 const connection = require('./database/database');
+const path = require('path');
 
 //Importing Controllers
 const categoriesController = require('./categories/categoriesController');
@@ -13,6 +14,9 @@ const Category= require('./categories/Category');
 
 // Static
 app.set(express.static('public'));
+app.use(express.static(__dirname + '/node_modules/bootstrap/dist/'));
+app.use(express.static(__dirname + '/node_modules/jquery/dist/'));
+app.use(express.static(__dirname + '/views/partials/'));
 
 // View engine
 app.set("view engine", "ejs");
@@ -39,4 +43,4 @@ app.get("/", (req, res) =>{
 
 app.listen(3000, () => {
 	console.log("The server is running <3");
-})
+});
