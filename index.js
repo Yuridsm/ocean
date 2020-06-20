@@ -16,7 +16,6 @@ const Category= require('./categories/Category');
 app.set(express.static('public'));
 app.use(express.static(__dirname + '/node_modules/bootstrap/dist/'));
 app.use(express.static(__dirname + '/node_modules/jquery/dist/'));
-app.use(express.static(__dirname + '/views/partials/'));
 
 // View engine
 app.set("view engine", "ejs");
