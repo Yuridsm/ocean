@@ -1,0 +1,50 @@
+<%- include("../../partials/header.ejs") %>
+<%- include("../../partials/navbar.ejs") %>
+
+<div class="container">
+	<h3>Category List</h3>
+	<a class="btn btn-success my-3" href="/admin/categories/new">New Category</a>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Titulo</th>
+				<th>Slug</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% categories.forEach((category) => {%>
+				<tr>
+					<th><%= category.id %></th>
+					<th><%= category.title %></th>
+					<th><%= category.slug %></th>
+					<th>
+						<a href="/admin/categories/edit/<%= category.id %>" class="d-inline px-1 btn btn-dark btn-sm">Edit</a>
+
+						<form class="d-inline" method="POST" action="/categories/delete" onsubmit="destroyConfirm(event, this)">
+							<input type="hidden" name="id" value="<%= category.id %>">
+							<button class=" px-1 btn btn-danger btn-sm">Destroy</button>
+						</form>
+					</th>
+				</tr>
+			<% }) %>
+		</tbody>
+	</table>
+	<hr>
+</div>
+
+<%- include("../../partials/footer.ejs") %>
+<script>
+	
+	function destroyConfirm(event, form) {
+		event.preventDefault();
+		let decision = confirm("Você quer deletar? ");
+		if(decision) {
+			form.submit();
+		} else {
+			console.log("Foi um acidente");
+		}
+	}
+
+</script>
