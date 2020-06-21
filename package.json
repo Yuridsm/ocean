@@ -24,7 +24,8 @@
     "express": "^4.17.1",
     "jquery": "^3.5.1",
     "mysql2": "^2.1.0",
-    "sequelize": "^5.21.13"
+    "sequelize": "^5.21.13",
+    "slugify": "^1.4.0"
   },
   "optionalDependencies": {
     "fsevents": "^2.1.3"
