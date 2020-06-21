@@ -1,41 +1,18 @@
 <%- include("../../partials/header.ejs") %>
+<%- include("../../partials/navbar.ejs") %>
 
 <div class="container">
-	<div class="row d-flex justify-content-center">
-		<div class="card mt-3 shadow-sm p-0 col-11 col-md-4">
+	<form action="/categories/save" method="POST">
+		<div class="card mt-2">
 			<div class="card-header">
-				<h1>I'm header</h1>
+				<h3>Sign up category</h3>
 			</div>
 			<div class="card-body">
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique ratione doloribus facere temporibus iusto tempore sed, officiis vel maxime dolores ex asperiores praesentium expedita voluptas aliquam repellat inventore numquam veritatis fuga cupiditate, eum amet dolore. Modi numquam fugiat nobis itaque quisquam, assumenda sequi est, sunt, minus molestias id, eius expedita.</p>
-			</div>
-			<div class="card-footer p-1">
-				<button class="btn btn-dark btn-block">Buy now</button>
+				<input class="form-control mb-1" type="text" placeholder="anything" name="title">
+				<button class="btn btn-success">Sing up</button>
 			</div>
 		</div>
-		<div class="card mt-3 p-0 col-11 col-md-4">
-			<div class="card-header">
-				<h1>I'm header</h1>
-			</div>
-			<div class="card-body">
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique ratione doloribus facere temporibus iusto tempore sed, officiis vel maxime dolores ex asperiores praesentium expedita voluptas aliquam repellat inventore numquam veritatis fuga cupiditate, eum amet dolore. Modi numquam fugiat nobis itaque quisquam, assumenda sequi est, sunt, minus molestias id, eius expedita.</p>
-			</div>
-			<div class="card-footer">
-				<button class="btn btn-dark">Buy now</button>
-			</div>
-		</div>
-		<div class="card mt-3 shadow-sm p-0 col-11 col-md-4">
-			<div class="card-header">
-				<h1>I'm header</h1>
-			</div>
-			<div class="card-body">
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique ratione doloribus facere temporibus iusto tempore sed, officiis vel maxime dolores ex asperiores praesentium expedita voluptas aliquam repellat inventore numquam veritatis fuga cupiditate, eum amet dolore. Modi numquam fugiat nobis itaque quisquam, assumenda sequi est, sunt, minus molestias id, eius expedita.</p>
-			</div>
-			<div class="card-footer">
-				<button class="btn btn-dark">Buy now</button>
-			</div>
-		</div>
-	</div>
+	</form>
 </div>
 
 <%- include('../../partials/footer.ejs') %>
