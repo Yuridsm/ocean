@@ -13,7 +13,7 @@ const Article = require('./articles/Article');
 const Category= require('./categories/Category');
 
 // Static
-app.set(express.static('public'));
+app.use(express.static('public'));
 app.use(express.static(__dirname + '/node_modules/bootstrap/dist/'));
 app.use(express.static(__dirname + '/node_modules/jquery/dist/'));
 
