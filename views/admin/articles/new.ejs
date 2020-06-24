@@ -2,14 +2,14 @@
 <%- include("../../partials/navbar.ejs") %>
 
 <div class="container">
-	<form action="/categories/save" method="POST">
+	<form action="/articles/save" method="POST">
 		<div class="card mt-2">
 			<div class="card-header">
 				<h3>Sign up new article</h3>
 			</div>
 			<div class="card-body">
 				<form action="/categories/save" method="POST">
-					<input class="form-control mb-2" type="text" placeholder="anything" name="Article title">
+					<input class="form-control mb-2" type="text" placeholder="anything" name="title">
 					<textarea name="body" placeholder="Article here" id="article" class="form-control"></textarea>
 					<select name="category" class="form-control my-2">
 						<% categories.forEach((category) => { %> 
