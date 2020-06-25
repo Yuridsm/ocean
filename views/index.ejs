@@ -1,6 +1,16 @@
 <%- include("./partials/header.ejs") %>
-<%- include("./partials/navbar") %>
+<%- include("./partials/homenavbar.ejs") %>
 <div class="container">
-	<h1>Testing Bootstrap Framework</h1>
+	<h1>Read all article available</h1>
+	<% articles.forEach((article) => {%>
+	<div class="card my-2">
+		<div class="card-header">
+			<h3><%= article.title %></h3>
+		</div>
+		<div class="body p-3">
+			<a href="/<%= article.slug %>" class="btn btn-sm btn-dark">Read more</a>
+		</div>
+	</div>
+	<%})%>
 </div>
 <%- include("./partials/footer.ejs") %>
