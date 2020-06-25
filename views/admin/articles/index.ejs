@@ -2,32 +2,32 @@
 <%- include("../../partials/navbar.ejs") %>
 
 <div class="container">
-	<h3>Category List</h3>
-	<a class="btn btn-success my-3" href="/admin/categories/new">New Category</a>
+	<h3>Articles List</h3>
+	<a class="btn btn-success my-3" href="/admin/articles/new">New Article</a>
 	<table class="table">
 		<thead>
 			<tr>
 				<th>ID</th>
 				<th>Titulo</th>
 				<th>Slug</th>
+				<th>Category</th>
 				<th>Action</th>
 			</tr>
 		</thead>
 		<tbody>
-			<% categories.forEach((category) => {%>
-				<tr>
-					<th><%= category.id %></th>
-					<th><%= category.title %></th>
-					<th><%= category.slug %></th>
-					<th>
-						<a href="/admin/categories/edit/<%= category.id %>" class="d-inline px-1 btn btn-dark btn-sm">Edit</a>
-
-						<form class="d-inline" method="POST" action="/categories/delete" onsubmit="destroyConfirm(event, this)">
-							<input type="hidden" name="id" value="<%= category.id %>">
-							<button class=" px-1 btn btn-danger btn-sm">Destroy</button>
-						</form>
-					</th>
-				</tr>
+			<% articles.forEach((article) => { %>
+			<tr>
+				<td><%= article.id %></td>
+				<td><%= article.title %></td>
+				<td><%= article.slug %></td>
+				<td><%= article.category.title %></td>
+				<td>
+					<form action="/articles/delete" method="POST" class="inline-block" onsubmit="destroyConfirm(event, this)">
+						<input type="hidden" name="id" value="<%= article.id %>">
+						<button class="btn btn-sm btn-danger">Destroy</button>
+					</form>
+				</td>
+			</tr>
 			<% }) %>
 		</tbody>
 	</table>
