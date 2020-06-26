@@ -42,11 +42,8 @@ app.get("/", (req, res) =>{
 			['id', 'DESC']
 		]
 	}).then((articles) => {
-		Category.findAll().then(category => {
-			res.render("index", {
-				articles: articles,
-				category: category
-			});
+		Category.findAll().then(categories => {
+			res.render("index", { articles: articles, categories: categories });
 		});
 	});
 });
@@ -54,15 +51,16 @@ app.get("/", (req, res) =>{
 app.get("/:slug", (req, res) => {
 	let slug = req.params.slug;
 	Article.findOne({
-		where: {
-			slug: slug
-		}
+		where: { slug: slug }
 	}).then((article) => {
+		console.log('==============================');
+		console.log(article);
+		console.log('==============================');
 		if(slug != undefined) {
-			Category.findAll().then(category => {
+			Category.findAll().then(categories => {
 				res.render("article", {
 					article: article,
-					category: category
+					categories: categories
 				});
 			});
 		} else {
@@ -70,11 +68,11 @@ app.get("/:slug", (req, res) => {
 		}
 	}).catch(err => {
 		res.redirect("/");
-	})
-})
+	});
+});
 
 app.get("/category/:slug", (req, res) => {
-	let slug = req.params.slug;
+	let slug = req.params.slug; //V8 slug
 	Category.findOne({
 		where: {slug: slug},
 		include: [{model: Article}]
@@ -82,8 +80,8 @@ app.get("/category/:slug", (req, res) => {
 		if(category != undefined) {
 			Category.findAll().then(categories => {
 				res.render("index", {
-					articles: category.articles,
-					categories: categories
+					articles: category.articles, // We just get articles belongs to that category
+					categories: categories //We get all categories for navbar
 				});
 			});
 		} else {
