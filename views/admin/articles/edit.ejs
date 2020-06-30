@@ -1,0 +1,42 @@
+<%- include("../../partials/header.ejs") %>
+<%- include("../../partials/navbar.ejs") %>
+
+<div class="container">
+	<form action="/articles/save" method="POST">
+		<div class="card mt-2">
+			<div class="card-header">
+				<h3>Edit article</h3>
+			</div>
+			<div class="card-body">
+				<form action="/categories/save" method="POST">
+					<input class="form-control mb-2" type="text" placeholder="anything" name="title">
+					<textarea name="body" placeholder="Article here" id="article" class="form-control"></textarea>
+					<select name="category" class="form-control my-2">
+						<% categories.forEach((category) => { %> 
+							<option value="<%= category.id %>"><%= category.title %></option>
+						<% }) %>
+					</select>
+					<button class="btn btn-success">Update</button>
+				</form>
+			</div>
+		</div>
+	</form>
+</div>
+
+<div id="hiddenContent" style="display: none"><%= article.body %></div>
+
+<%- include('../../partials/footer.ejs') %>
+<script src="/tinymce/tinymce.min.js"></script>
+<script>
+	let content = document.getElementById("hiddenContent").textContent;
+	tinymce.init({
+		language: "en",
+		selector: "#article",
+		plugins: [
+			'advlist autolink link image lists print preview hr searchreplace wordcount fullscreen insertdatetime media save table paste emoticons'
+		],
+		init_instance_callback: () => {
+			tinymce.get('article').setContent(content.html());
+		}
+	});
+</script>
