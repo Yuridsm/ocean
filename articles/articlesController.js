@@ -52,4 +52,26 @@ router.post("/articles/delete", (req, res) => {
 	}
 });
 
+router.get("/admin/articles/edit/:id", (req, res) => {
+	let id = req.params.id;
+	Article.findByPk(id).then(article => {
+		if(article != null) {
+			Category.findAll().then(categories => {
+				res.render("admin/articles/edit", {
+					categories: categories,
+					article: article
+				});
+			}).catch(err => {
+				console.log("Category - Erro na rota: [/admin/articles/edit");
+				res.redirect("/");
+			});
+		} else {
+			res.redirect("/");
+		}
+	}).catch(err => {
+		console.log("Article - Erro na rota: [/admin/articles/edit:id]");
+		res.redirect("/");
+	});
+});
+
 module.exports = router;
