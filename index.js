@@ -38,6 +38,7 @@ app.use('/', articlesController);
 
 app.get("/", (req, res) =>{
 	Article.findAll({
+		limit: 4,
 		order: [
 			['id', 'DESC']
 		]
@@ -54,7 +55,7 @@ app.get("/:slug", (req, res) => {
 	Article.findOne({
 		where: { slug: slug }
 	}).then((article) => {
-		if(slug != undefined) {
+		if(article != undefined) {
 			Category.findAll().then(categories => {
 				res.render("article", {
 					article: article,
@@ -78,7 +79,7 @@ app.get("/category/:slug", (req, res) => {
 		if(category != undefined) {
 			Category.findAll().then(categories => {
 				res.render("index", {
-					articles: category.articles,//Problema aqui
+					articles: category.articles,
 					categories: categories
 				});
 			});
