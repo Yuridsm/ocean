@@ -20,9 +20,13 @@
 				<td><%= article.id %></td>
 				<td><%= article.title %></td>
 				<td><%= article.slug %></td>
-				<td><%= article.category.title %></td>
+				<% if(article.category != null){ %>
+					<td><%= article.category.title %></td>
+				<% } else {%>
+					<td></td>
+				<% } %>
 				<td>
-					<form action="/articles/delete" method="POST" class="inline-block" onsubmit="destroyConfirm(event, this)">
+					<form action="/articles/delete" method="POST" class="d-flex justify-content-end align-items-center" onsubmit="destroyConfirm(event, this)">
 						<input type="hidden" name="id" value="<%= article.id %>">
 						<button class="btn btn-sm btn-danger">Destroy</button>
 					</form>
