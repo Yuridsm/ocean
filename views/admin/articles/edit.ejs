@@ -2,13 +2,13 @@
 <%- include("../../partials/navbar.ejs") %>
 
 <div class="container">
-	<form action="/articles/save" method="POST">
 		<div class="card mt-2">
 			<div class="card-header">
 				<h3>Edit article</h3>
 			</div>
 			<div class="card-body">
-				<form action="/categories/save" method="POST">
+				<form action="/articles/update" method="POST">
+					<input type="hidden" name="id" value="<%= article.id %>">
 					<input class="form-control mb-2" type="text" placeholder="anything" name="title" value="<%= article.title %>">
 					<textarea name="body" placeholder="Article here" id="article" class="form-control"></textarea>
 					<select name="category" class="form-control my-2">
@@ -24,7 +24,6 @@
 				</form>
 			</div>
 		</div>
-	</form>
 </div>
 
 <div id="hiddenContent" style="display: none"><%= article.body %></div>
