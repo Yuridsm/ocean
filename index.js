@@ -78,7 +78,7 @@ app.get("/category/:slug", (req, res) => {
 		if(category != undefined) {
 			Category.findAll().then(categories => {
 				res.render("index", {
-					articles: category.article,//Problema aqui
+					articles: category.articles,//Problema aqui
 					categories: categories
 				});
 			});
