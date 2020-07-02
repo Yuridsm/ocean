@@ -94,17 +94,18 @@ router.post("/articles/update", (req, res) => {
 
 
 router.get("/articles/page/:num", (req, res) => {
-	let page = req.params.num;
+	let page = req.params.num; //17 pages
 	let offset = 0;
 	if(isNaN(page) || page <= 1) {
 		offset = 0;
 	} else {
-		offset = (parseInt(page)*4) -4;
+		offset = (parseInt(page) -1)*4;
 	}
 
 	Article.findAndCountAll({
 		limit: 4,
-		offset: offset
+		offset: offset,
+		order: [['id', 'DESC']]
 	}).then(articles => {
 		let next;
 
@@ -119,6 +120,7 @@ router.get("/articles/page/:num", (req, res) => {
 		}
 
 		let result = {
+			currentPageNumber: parseInt(page),
 			next: next,
 			articles: articles
 		}
