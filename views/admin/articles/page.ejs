@@ -13,5 +13,20 @@
 			</div>
 		</div>
 	<% }) %>
+	<div class="row">
+		<div class="col col-12">
+			<% if(result.currentPageNumber <= 1) { %>
+				<% if(result.next) { %>
+					<a href="/articles/page/<%= result.currentPageNumber + 1 %>" style="text-decoration: none; float: right">Next ></a>
+				<% } %>
+			<% } else { %>
+				<% if(result.next) { %>
+				<a href="/articles/page/<%= result.currentPageNumber - 1 %>" style="text-decoration: none; float: left">< Prev</a>
+				<a href="/articles/page/<%= result.currentPageNumber + 1 %>" style="text-decoration: none; float: right">Next ></a>
+				<% } else {%>
+					<a href="/articles/page/<%= result.currentPageNumber - 1 %>" style="text-decoration: none; float: left">< Prev</a>
+				<% } %>
+			<% } %>
+		</div>
+	</div>
 </div>
-<%- include("../../partials/footer.ejs") %>
