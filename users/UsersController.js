@@ -37,4 +37,37 @@ router.post("/users/create", (req, res) => {
 	});
 });
 
+router.get("/login", (req, res) => {
+	res.render("admin/users/login");
+})
+
+router.post("/authenticate", (req, res) => {
+	let email = req.body.email;
+	let password = req.body.password;
+
+	User.findOne({where: { email:email }}).then(user => {
+		// Here we verify whether user exists
+		if(user != undefined) {
+			// Here we validate the user's password
+			let correct = bcrypt.compareSync(password, user.password);
+			if(correct) {
+				req.session.user = {
+					id: user.id,
+					email: user.email
+				}
+				res.redirect("/admin/articles");
+			} else {
+				res.redirect("/login");
+			}
+		} else {
+			res.redirect("/login");
+		}
+	});
+});
+
+
+router.get("/logout", (req, res) => {
+	req.session.user = undefined;
+	res.redirect("/");
+});
 module.exports = router;
