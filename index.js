@@ -7,10 +7,12 @@ const path = require('path');
 //Importing Controllers
 const categoriesController = require('./categories/categoriesController');
 const articlesController = require('./articles/articlesController');
+const usersController = require("./users/UsersController");
 
 //Importing Models
 const Article = require('./articles/Article');
 const Category= require('./categories/Category');
+const User = require('./Users/User');
 
 // Static
 app.use(express.static('public'));
@@ -35,6 +37,7 @@ connection
 
 app.use('/', categoriesController);
 app.use('/', articlesController);
+app.use('/', usersController);
 
 app.get("/", (req, res) =>{
 	Article.findAll({
