@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const connection = require('./database/database');
 const path = require('path');
+const session = require('express-session');
 
 //Importing Controllers
 const categoriesController = require('./categories/categoriesController');
@@ -21,6 +22,14 @@ app.use(express.static(__dirname + '/node_modules/jquery/dist/'));
 
 // View engine
 app.set("view engine", "ejs");
+
+// Setting up session
+app.use(session({
+	secret: "Qualquercoisa",
+	cookie: {
+		maxAge: 86400000 //24 horas
+	}
+}));
 
 // Body parser
 app.use(bodyParser.urlencoded({extended: false}));
