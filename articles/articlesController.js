@@ -36,7 +36,7 @@ router.post("/articles/save", adminAuth ,(req, res) => {
 	});
 });
 
-router.post("/articles/delete", adminAuth ,(req, res) => {
+router.post("/articles/delete", adminAuth, (req, res) => {
 	let id = req.body.id;
 	if(id != undefined) {
 		if(!isNaN(id)) {
